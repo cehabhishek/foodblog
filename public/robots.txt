@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/login/
+User-agent: ChatGPT-User
+Sitemap: https://codingiz.com/sitemap.xml
+Sitemap: https://www.codingiz.com/sitemap.xml
