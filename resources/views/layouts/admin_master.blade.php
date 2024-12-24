@@ -281,35 +281,30 @@
             height: 800,
             automatic_uploads: true,
             file_picker_types: 'image',
-            images_upload_handler: function(blobInfo, success, failure) {
-                let formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
+            image_title: true,
+            automatic_uploads: true,
+            images_upload_url: '{{ route('admin.upload.image') }}',
+            file_picker_types: 'image',
+            file_picker_callback: function(cb, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*');
+                input.onchange = function() {
+                    var file = this.files[0];
 
-                $.ajaxSetup({
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-                    }
-                });
-                // AJAX request to upload image
-                $.ajax({
-                    url: '{{ route('admin.upload.image') }}', // Laravel route to handle image upload
-                    type: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        if (response.location) {
-                            success(response.location); // Pass the image URL back to TinyMCE
-                        } else {
-                            failure('Upload failed: no location returned');
-                        }
-                    },
-
-                });
-            },
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function () {
+                        var id = 'blobid' + (new Date()).getTime();
+                        var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                        var base64 = reader.result.split(',')[1];
+                        var blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+                        cb(blobInfo.blobUri(), { title: file.name });
+                    };
+                };
+                input.click();
+            }
         });
 
         $("#category_id").on("change", function() {

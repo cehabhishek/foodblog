@@ -88,7 +88,7 @@
                 <header class="uc-offcanvas-header hstack justify-between items-center pb-4 bg-white dark:bg-gray-900">
                     <div class="uc-logo">
                         <a href="index.html" class="h5 text-none text-gray-900 dark:text-white">
-                            <img class="w-32px" src="../assets/images/common/logo-icon.svg" alt="News5" data-uc-svg>
+                            <img class="w-32px" src="{{asset('frontend/images/common/logo-icon.svg')}}" alt="News5" data-uc-svg>
                         </a>
                     </div>
                     <button class="uc-offcanvas-close p-0 icon-3 btn border-0 dark:text-white dark:text-opacity-50 hover:text-primary hover:rotate-90 duration-150 transition-all" type="button">
@@ -1949,42 +1949,21 @@
                                 <div>
                                     <a class="uc-menu-trigger icon-2" href="#uc-menu-panel" data-uc-toggle></a>
                                 </div>
-                                <div class="uc-navbar-item d-none lg:d-inline-flex">
-                                    <a class="btn btn-xs gap-narrow ps-1 border rounded-pill fw-bold dark:text-white hover:bg-gray-25 dark:hover:bg-gray-900" href="#live_now" data-uc-scroll="offset: 128">
-                                        <i class="icon icon-narrow unicon-dot-mark text-red" data-uc-animate="flash"></i>
-                                        <span>Live</span>
-                                    </a>
-                                </div>
+
                                 <div class="uc-logo d-block md:d-none">
                                     <a href="index.html">
-                                        <img class="w-100px text-dark dark:text-white" src="../assets/images/demo-seven/common/logo.svg" alt="News5" data-uc-svg>
+                                        <img class="w-100px text-dark dark:text-white" src="{{ asset('frontend/images/demo-seven/common/logo.svg') }}" alt="News5" data-uc-svg>
                                     </a>
                                 </div>
                             </div>
                             <div class="uc-navbar-center">
                                 <div class="uc-logo d-none md:d-block">
                                     <a href="index.html">
-                                        <img class="w-150px text-dark dark:text-white" src="../assets/images/demo-seven/common/logo.svg" alt="News5" data-uc-svg>
+                                        <img class="w-150px text-dark dark:text-white" src="{{ asset('frontend/images/demo-seven/common/logo.svg') }}" alt="News5" data-uc-svg>
                                     </a>
                                 </div>
                             </div>
                             <div class="uc-navbar-right gap-2 lg:gap-3">
-                                <div class="uc-navbar-item d-inline-flex lg:d-none">
-                                    <a class="btn btn-xs gap-narrow ps-1 border rounded-pill fw-bold dark:text-white hover:bg-gray-25 dark:hover:bg-gray-900" href="#live_now" data-uc-scroll="offset: 128">
-                                        <i class="icon icon-narrow unicon-dot-mark text-red" data-uc-animate="flash"></i>
-                                        <span>Live</span>
-                                    </a>
-                                </div>
-                                <div class="uc-navbar-item">
-                                    <a class="uc-cart-trigger position-relative btn btn-sm border-0 p-0 gap-narrow duration-0 dark:text-white" href="#uc-cart-panel" data-uc-toggle>
-                                        <i class="icon icon-2 fw-medium unicon-shopping-basket"></i>
-                                    </a>
-                                </div>
-                                <div class="uc-navbar-item d-none lg:d-inline-flex">
-                                    <a class="uc-account-trigger position-relative btn btn-sm border-0 p-0 gap-narrow duration-0 dark:text-white" href="#uc-account-modal" data-uc-toggle>
-                                        <i class="icon icon-2 fw-medium unicon-user-avatar"></i>
-                                    </a>
-                                </div>
                                 <div class="uc-navbar-item d-none lg:d-inline-flex">
                                     <a class="uc-search-trigger cstack text-none text-dark dark:text-white" href="#uc-search-modal" data-uc-toggle>
                                         <i class="icon icon-2 fw-medium unicon-search"></i>

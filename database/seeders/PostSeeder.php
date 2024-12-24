@@ -19,7 +19,7 @@ class PostSeeder extends Seeder
 
         foreach (range(1, 50) as $index) {
             Post::create([
-                'category_id' => $faker->numberBetween(1, 3),
+                'category_id' => $faker->randomElement([1, 2, 22, 23, 24]),
                 'sub_category' => $faker->words(3, true),  // Generating a random sub-category name
                 'sub_category_id' => $faker->numberBetween(1, 6),
                 'title' => $title = $faker->sentence(6),
