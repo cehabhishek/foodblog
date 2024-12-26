@@ -95,7 +95,7 @@
             </div>
             <div class="panel mt-4 lg:mt-6 xl:mt-9">
                 <div class="container max-w-lg">
-                    <div class="post-content panel fs-6 md:fs-5" data-uc-lightbox="animation: scale">
+                    <div class="panel fs-6 md:fs-5" data-uc-lightbox="animation: scale">
                       {!! $post->description !!}
                     </div>
                     <div class="post-footer panel vstack sm:hstack gap-3 justify-between justifybetween border-top py-4 mt-4 xl:py-9 xl:mt-9">

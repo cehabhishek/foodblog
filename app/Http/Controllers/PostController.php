@@ -58,7 +58,7 @@ class PostController extends Controller
         $imageName = Str::slug($request->title) . time() . '.' . $imageExtension;
 
         $destinationPathThumbnail = public_path('/uploads/post/');
-        $image->resize(430, 168);
+        $image->resize(1000, 666);
         $keywords = implode(', ', $request->keywords);
 
         $subCategoryId = SubCategory::where('name', $request->sub_category)->first();
@@ -128,7 +128,7 @@ class PostController extends Controller
             $imageName = Str::slug($request->title) . time() . '.' . $imageExtension;
 
             $destinationPathThumbnail = public_path('/uploads/post/');
-            $image->resize(430, 168);
+            $image->resize(1000, 666);
             unlink(public_path('/uploads/post/' . $post->thumbnail));
             $image->save($destinationPathThumbnail . $imageName);
 

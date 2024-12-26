@@ -144,7 +144,7 @@
                         <div class="card-header h6 mb-0 bg-none p-3 d-flex">
                             <div class="flex-1">
                                 <div>Featured Image <span style="color:red"> Leave Blank If Don't want to change
-                                        image</span></div>
+                                        image (Size : 1000x666)</span></div>
                             </div>
                         </div>
                         <div class="card-body fw-bold">

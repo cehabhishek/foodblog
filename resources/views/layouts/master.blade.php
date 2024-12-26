@@ -1951,15 +1951,15 @@
                                 </div>
 
                                 <div class="uc-logo d-block md:d-none">
-                                    <a href="index.html">
-                                        <img class="w-100px text-dark dark:text-white" src="{{ asset('frontend/images/demo-seven/common/logo.svg') }}" alt="News5" data-uc-svg>
+                                    <a href="{{ route('index') }}">
+                                        <img class="w-100px text-dark dark:text-white" src="{{ asset('frontend/images/logo.jpg') }}" alt="News5" data-uc-svg>
                                     </a>
                                 </div>
                             </div>
                             <div class="uc-navbar-center">
                                 <div class="uc-logo d-none md:d-block">
-                                    <a href="index.html">
-                                        <img class="w-150px text-dark dark:text-white" src="{{ asset('frontend/images/demo-seven/common/logo.svg') }}" alt="News5" data-uc-svg>
+                                    <a href="{{ route('index') }}">
+                                        <img class="w-150px text-dark dark:text-white" src="{{ asset('frontend/images/logo.jpg') }}" alt="News5" data-uc-svg>
                                     </a>
                                 </div>
                             </div>
