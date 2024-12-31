@@ -54,7 +54,7 @@
                             </td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->getCategory->name }}</td>
-                            {{-- <td>{{ $post->getSubCategory->name }}</td> --}}
+                            <td>{{ $post->getSubCategory->name ?? 'N/A' }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->keywords }}</td>
                             <td>{{ $post->visibility }}</td>

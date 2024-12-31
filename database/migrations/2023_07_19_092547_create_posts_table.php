@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('country',100);
             $table->string('date',100);
             $table->string('visibility',10);
+            $table->string('views',255);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

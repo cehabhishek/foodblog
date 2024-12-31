@@ -43,7 +43,7 @@ class PostController extends Controller
             "description"       => 'required',
             "visibility"        => 'required',
             "category_id"       => 'required',
-            "sub_category"      => 'required',
+            // "sub_category"      => 'required',
             "keywords"          => 'required',
             "country"           => 'required',
             "date"              => 'required',
@@ -64,6 +64,7 @@ class PostController extends Controller
         $subCategoryId = SubCategory::where('name', $request->sub_category)->first();
         // dd($subCategoryId->id);
         // dd($keywords);
+        $subCategoryId = $request->input('sub_category_id');
         $postData = [
             "title"             =>  $request->title,
             "slug"              =>  Str::slug($request->title),
@@ -72,7 +73,7 @@ class PostController extends Controller
             "visibility"        =>  $request->visibility,
             "category_id"       =>  $request->category_id,
             "sub_category"      =>  $request->sub_category,
-            "sub_category_id"   =>  $subCategoryId->id,
+            "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
             "country"           =>  $request->country,
             "date"              =>  $request->date,
             "keywords"          =>  $keywords,
@@ -109,7 +110,7 @@ class PostController extends Controller
             "description"       => 'required',
             "visibility"        => 'required',
             "category_id"       => 'required',
-            "sub_category"      => 'required',
+            // "sub_category"      => 'required',
             "keywords"          => 'required',
             'thumbnail'         => 'nullable|image|mimes:jpg,png,jpeg|max:1024',
         ];
@@ -132,6 +133,7 @@ class PostController extends Controller
             unlink(public_path('/uploads/post/' . $post->thumbnail));
             $image->save($destinationPathThumbnail . $imageName);
 
+            $subCategoryId = $request->input('sub_category_id');
 
             $postData = [
                 "title"             =>  $request->title,
@@ -140,7 +142,7 @@ class PostController extends Controller
                 "description"       =>  $request->description,
                 "visibility"        =>  $request->visibility,
                 "category_id"       =>  $request->category_id,
-                "sub_category"      =>  $request->sub_category,
+                "sub_category"      =>  $subCategoryId ? $subCategoryId : null,
                 "sub_category_id"   =>  $subCategoryId->id,
                 "keywords"          =>  $keywords,
                 "thumbnail"         =>  $imageName,
@@ -154,7 +156,7 @@ class PostController extends Controller
                 "visibility"        =>  $request->visibility,
                 "category_id"       =>  $request->category_id,
                 "sub_category"      =>  $request->sub_category,
-                "sub_category_id"   =>  $subCategoryId->id,
+                "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
                 "keywords"          =>  $keywords,
             ];
         }
