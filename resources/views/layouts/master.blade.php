@@ -520,7 +520,7 @@
 
                                     <div class="swiper-slide text-white">
                                         <div class="type-post post panel">
-                                            <a href="blog-details.html" class="fs-7 fw-normal text-none text-inherit">{{ $post->title }}</a>
+                                            <a href="{{ route('post.detail', ['post_slug' => $post->slug]) }}" class="fs-7 fw-normal text-none text-inherit">{{ $post->title }}</a>
                                         </div>
                                     </div>
                                     @endforeach
@@ -616,11 +616,11 @@
                                                             <div class="featured-image bg-gray-25 dark:bg-gray-800 ratio ratio-16x9">
                                                                 <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('uploads/post/'.$post->thumbnail) }}" data-src="{{ asset('uploads/post/'.$post->thumbnail) }}" alt="The Importance of Sleep: Tips for Better Rest and Recovery" data-uc-img="loading: lazy">
                                                             </div>
-                                                            <a href="blog-details.html" class="position-cover"></a>
+                                                            <a href="{{ route('post.detail', ['post_slug' => $post->slug]) }}" class="position-cover"></a>
                                                         </div>
                                                         <div class="post-header panel vstack gap-narrow">
                                                             <h3 class="post-title h6 m-0 text-truncate-2">
-                                                                <a class="text-none hover:text-primary duration-150" href="blog-details.html">{{ $post->title }}</a>
+                                                                <a class="text-none hover:text-primary duration-150" href="{{ route('post.detail', ['post_slug' => $post->slug]) }}">{{ $post->title }}</a>
                                                             </h3>
                                                             <div class="post-meta panel hstack justify-start gap-1 fs-7 ft-tertiary fw-medium text-gray-900 dark:text-white text-opacity-60 d-none md:d-flex z-1 d-none md:d-block">
                                                                 <div>

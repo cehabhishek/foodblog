@@ -49,9 +49,9 @@
                 <ul class="breadcrumb nav-x justify-center gap-1 fs-7 sm:fs-6 m-0">
                     <li><a href="index.html">Home</a></li>
                     <li><i class="unicon-chevron-right opacity-50"></i></li>
-                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="blog.html">{{ $post->getCategory->name }}</a></li>
                     <li><i class="unicon-chevron-right opacity-50"></i></li>
-                    <li><a href="blog-category.html">Strategy</a></li>
+                    <li><a href="blog-category.html">{{ $post->sub_category ?? '' }}</a></li>
                     <li><i class="unicon-chevron-right opacity-50"></i></li>
                     <li><span class="opacity-50">{{ $post->title }}</span></li>
                 </ul>
@@ -128,7 +128,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="post-author panel py-4 px-3 sm:p-3 xl:p-4 bg-gray-25 dark:bg-opacity-10 rounded lg:rounded-2">
+                    {{-- <div class="post-author panel py-4 px-3 sm:p-3 xl:p-4 bg-gray-25 dark:bg-opacity-10 rounded lg:rounded-2">
                         <div class="row g-4 items-center">
                             <div class="col-12 sm:col-5 xl:col-3">
                                 <figure class="featured-image m-0 ratio ratio-1x1 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
@@ -153,21 +153,26 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="post-navigation panel vstack sm:hstack justify-between gap-2 mt-8 xl:mt-9">
+                        @foreach ($allPosts->take(1) as $allPost)
+
                         <div class="new-post panel hstack w-100 sm:w-1/2">
                             <div class="panel hstack justify-center w-100px h-100px">
                                 <figure class="featured-image m-0 ratio ratio-1x1 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="../assets/images/common/img-fallback.png" data-src="../assets/images/demo-seven/posts/img-02.jpg" alt="Tech Innovations Reshaping the Retail Landscape: AI Payments" data-uc-img="loading: lazy">
-                                    <a href="blog-details.html" class="position-cover" data-caption="Tech Innovations Reshaping the Retail Landscape: AI Payments"></a>
+                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('uploads/post/' . $allPost->thumbnail) }}" data-src="{{ asset('uploads/post/' . $allPost->thumbnail) }}" alt="Tech Innovations Reshaping the Retail Landscape: AI Payments" data-uc-img="loading: lazy">
+                                    <a href="{{ route('post.detail', ['post_slug' => $allPost->slug]) }}" class="position-cover" data-caption="Tech Innovations Reshaping the Retail Landscape: AI Payments"></a>
                                 </figure>
                             </div>
                             <div class="panel vstack justify-center px-2 gap-1 w-1/3">
                                 <span class="fs-7 opacity-60">Prev Article</span>
                                 <h6 class="h6 lg:h5 m-0">Tech Innovations Reshaping the Retail Landscape: AI Payments</h6>
                             </div>
-                            <a href="blog-details.html" class="position-cover"></a>
+                            <a href="{{ route('post.detail', ['post_slug' => $allPost->slug]) }}" class="position-cover"></a>
                         </div>
+                        @endforeach
+                        @foreach ($allPosts->take(1) as $allPost)
+
                         <div class="new-post panel hstack w-100 sm:w-1/2">
                             <div class="panel vstack justify-center px-2 gap-1 w-1/3 text-end">
                                 <span class="fs-7 opacity-60">Next Article</span>
@@ -175,12 +180,13 @@
                             </div>
                             <div class="panel hstack justify-center w-100px h-100px">
                                 <figure class="featured-image m-0 ratio ratio-1x1 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="../assets/images/common/img-fallback.png" data-src="../assets/images/demo-seven/posts/img-01.jpg" alt="The Rise of AI-Powered Personal Assistants: How They Manage" data-uc-img="loading: lazy">
-                                    <a href="blog-details.html" class="position-cover" data-caption="The Rise of AI-Powered Personal Assistants: How They Manage"></a>
+                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('uploads/post/' . $allPost->thumbnail) }}" data-src="{{ asset('uploads/post/' . $allPost->thumbnail) }}" alt="The Rise of AI-Powered Personal Assistants: How They Manage" data-uc-img="loading: lazy">
+                                    <a href="{{ route('post.detail', ['post_slug' => $allPost->slug]) }}" class="position-cover" data-caption="The Rise of AI-Powered Personal Assistants: How They Manage"></a>
                                 </figure>
                             </div>
-                            <a href="blog-details.html" class="position-cover"></a>
+                            <a href="{{ route('post.detail', ['post_slug' => $allPost->slug]) }}" class="position-cover"></a>
                         </div>
+                        @endforeach
                     </div>
                     <div class="post-related panel border-top pt-2 mt-8 xl:mt-9">
                         <h4 class="h5 xl:h4 mb-5 xl:mb-6">Related to this topic:</h4>

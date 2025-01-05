@@ -26,7 +26,7 @@ class IndexController extends Controller
         // $tutorials = SubCategory::where('category_id', $category->id)->get();
         $categories = Category::orderBy('id', 'DESC')->get();
         $sliderPosts = Post::latest()->get();
-        
+
         return view('frontend.index', compact('categories','sliderPosts'));
     }
 
@@ -65,13 +65,15 @@ class IndexController extends Controller
     {
         // dd($post_slug);
         $post = Post::where('slug', $post_slug)->first();
+        $allPosts = Post::where('category_id',$post->category_id)->get();
+        // dd($allPosts);
         if ($post != null) {
 
             $sideBarPosts = Post::where(['category_id' => $post->category_id, 'sub_category_id' => $post->sub_category_id])->get();
             $category = SubCategory::where('id', $post->sub_category_id)->first();
             // dd($category);
 
-            return view('frontend.post_detail', compact('post', 'sideBarPosts', 'category'));
+            return view('frontend.post_detail', compact('post', 'sideBarPosts', 'category','allPosts'));
         } else {
             return view('errors.404');
         }
