@@ -130,7 +130,7 @@ class PostController extends Controller
 
             $destinationPathThumbnail = public_path('/uploads/post/');
             $image->resize(1000, 666);
-            unlink(public_path('/uploads/post/' . $post->thumbnail));
+            // unlink(public_path('/uploads/post/' . $post->thumbnail));
             $image->save($destinationPathThumbnail . $imageName);
 
             $subCategoryId = $request->input('sub_category_id');
