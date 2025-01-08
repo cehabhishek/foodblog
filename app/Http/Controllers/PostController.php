@@ -133,8 +133,8 @@ class PostController extends Controller
             // unlink(public_path('/uploads/post/' . $post->thumbnail));
             $image->save($destinationPathThumbnail . $imageName);
 
-            $subCategoryId = $request->input('sub_category_id');
 
+            $subCategoryId = $request->input('sub_category_id');
             $postData = [
                 "title"             =>  $request->title,
                 "slug"              =>  Str::slug($request->title),
@@ -148,6 +148,7 @@ class PostController extends Controller
                 "thumbnail"         =>  $imageName,
             ];
         } else {
+            $subCategoryId = $request->input('sub_category_id');
             $postData = [
                 "title"             =>  $request->title,
                 "slug"              =>  Str::slug($request->title),
