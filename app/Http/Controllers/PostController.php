@@ -118,7 +118,7 @@ class PostController extends Controller
         $this->validate($request, $rules);
         $keywords = implode(', ', $request->keywords);
 
-        $subCategoryId = SubCategory::where('name', $request->sub_category)->first();
+        $subCategoryName = SubCategory::where('name', $request->sub_category)->first();
 
         if ($request->file('thumbnail') != null) {
             $post = Post::where('id', $id)->first();
@@ -142,8 +142,8 @@ class PostController extends Controller
                 "description"       =>  $request->description,
                 "visibility"        =>  $request->visibility,
                 "category_id"       =>  $request->category_id,
-                "sub_category"      =>  $subCategoryId ? $subCategoryId : null,
-                "sub_category_id"   =>  $subCategoryId->id,
+                "sub_category"      =>  $subCategoryName ? $subCategoryName : null,
+                "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
                 "keywords"          =>  $keywords,
                 "thumbnail"         =>  $imageName,
             ];
