@@ -41,6 +41,7 @@
                             <th class="text-nowrap">Title</th>
                             <th class="text-nowrap">Keywords</th>
                             <th class="text-nowrap">Meta Description</th>
+                            <th class="text-nowrap">Slug</th>
                             <th class="text-nowrap">Action</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->title }}</td>
                                 <td>{{ $category->keywords }}</td>
+                                <td>{{ $category->slug }}</td>
                                 <td>{{ $category->meta_description }}</td>
                                 <td>
                                     <div class="btn-group me-1 mb-1">
@@ -166,6 +168,7 @@
                             <th class="text-nowrap">Title</th>
                             <th class="text-nowrap">Keywords</th>
                             <th class="text-nowrap">Meta Description</th>
+                            <th class="text-nowrap">Slug</th>
                             <th class="text-nowrap">Action</th>
                         </tr>
                     </thead>
@@ -180,6 +183,7 @@
                                 <td>{{ $subCategory->category->name }}</td>
                                 <td>{{ $subCategory->title }}</td>
                                 <td>{{ $subCategory->keywords }}</td>
+                                <td>{{ $subCategory->slug }}</td>
                                 <td>{{ $subCategory->meta_description }}</td>
 
                                 <td>

@@ -32,11 +32,11 @@ class CategoryController extends Controller
         ];
 
         $this->validate($request, $rules);
-
+        $name = str_replace('&', 'and', $request->name);
         $categoryData = [
             "name"              => $request->name,
             "title"             => $request->title,
-            "slug"              => Str::slug($request->name),
+            "slug"              => Str::slug($name),
             "keywords"          => implode(',', $request->keywords),
             "meta_description"  => $request->meta_description,
         ];
@@ -58,12 +58,12 @@ class CategoryController extends Controller
 
         // dd(Str::slug($request->name));
         $this->validate($request, $rules);
-
+        $name = str_replace('&', 'and', $request->name);
 
         $subCategoryData = [
             "category_id"           => $request->category_id,
             "name"                  => $request->name,
-            "slug"                  => Str::slug($request->name),
+            "slug"                  => Str::slug($name),
             "title"                 => $request->title,
             "keywords"              => implode(',', $request->keywords),
             "meta_description"      => $request->meta_description,
@@ -95,11 +95,11 @@ class CategoryController extends Controller
         ];
 
         $this->validate($request, $rules);
-
+        $name = str_replace('&', 'and', $request->name);
         $categoryData = [
             "name"              => $request->name,
             "title"             => $request->title,
-            "slug"              => Str::slug($request->name),
+            "slug"              => Str::slug($name),
             "keywords"          => implode(',', $request->keywords),
             "meta_description"  => $request->meta_description,
         ];
@@ -126,9 +126,11 @@ class CategoryController extends Controller
 
         $this->validate($request, $rules);
 
+        $name = str_replace('&', 'and', $request->name);
+
         $subCategoryData = [
             "category_id"           => $request->category_id,
-            "slug"                  => Str::slug($request->name),
+            "slug"                  => Str::slug($name),
             "name"                  => $request->name,
             "title"                 => $request->title,
             "keywords"              => implode(',', $request->keywords),
