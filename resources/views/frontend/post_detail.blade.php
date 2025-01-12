@@ -215,10 +215,10 @@
                             </div>
                         @endforeach
                         @foreach ($allPosts->take(2) as $allPost)
+                        @if (!in_array($allPost->id, $existPost))
                         @php
                             $existPost[] = $allPost->id;
                         @endphp
-                        @if (!in_array($allPost->id, $existPost))
 
                             <div class="new-post panel hstack w-100 sm:w-1/2">
                                 <div class="panel vstack justify-center px-2 gap-1 w-1/3 text-end">
