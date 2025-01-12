@@ -55,8 +55,8 @@
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->title }}</td>
                                 <td>{{ $category->keywords }}</td>
-                                <td>{{ $category->slug }}</td>
                                 <td>{{ $category->meta_description }}</td>
+                                <td>{{ $category->slug }}</td>
                                 <td>
                                     <div class="btn-group me-1 mb-1">
                                         <a href="{{ route('admin.category.edit',$category->id) }}" class="btn btn-primary"
@@ -183,8 +183,8 @@
                                 <td>{{ $subCategory->category->name }}</td>
                                 <td>{{ $subCategory->title }}</td>
                                 <td>{{ $subCategory->keywords }}</td>
-                                <td>{{ $subCategory->slug }}</td>
                                 <td>{{ $subCategory->meta_description }}</td>
+                                <td>{{ $subCategory->slug }}</td>
 
                                 <td>
                                     <div class="btn-group me-1 mb-1">
