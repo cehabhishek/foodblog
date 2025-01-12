@@ -154,6 +154,11 @@
                         </a>
                         <div class="menu-submenu">
                             <div class="menu-item">
+                                <a href="{{ route('admin.title.description.index') }}" class="menu-link">
+                                    <div class="menu-text">Title Description </div>
+                                </a>
+                            </div>
+                            <div class="menu-item">
                                 <a href="{{ route('admin.website.info.from', 'about-us') }}" class="menu-link">
                                     <div class="menu-text">About Us </div>
                                 </a>
@@ -327,7 +332,7 @@
                     $.each(response.sub_categoreis, function(index, sub_category) {
                         var sub_category =
                             '<option value="' +
-                            sub_category["name"] +
+                            sub_category["id"] +
                             '">' +
                             sub_category["name"] +
                             "</option>";
@@ -386,8 +391,8 @@
 
     <script src="{{ asset('admin/js/rocket-loader.min.js') }}" data-cf-settings="7caf5af534b7f033feccb426-|49" defer>
     </script>
-    <script src="{{ asset('admin/js/custom.js') }}"></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"></script>
+    <script src="{{ asset('admin/js/custom.js') }}"></script>
 
 </body>
 

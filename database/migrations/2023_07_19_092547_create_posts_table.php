@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('category_id',10);
-            $table->string('sub_category',50);
-            $table->string('sub_category_id',50);
+            $table->string('sub_category',255);
+            $table->string('sub_category_id',10);
             $table->string('title',255);
             $table->string('slug',255);
             $table->longText('keywords');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('country',100);
             $table->string('date',100);
             $table->string('visibility',10);
-            $table->string('views',255);
+            $table->string('views',100)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();
         });

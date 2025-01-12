@@ -73,12 +73,25 @@ $(function() {
 //         error: function() {}
 //     });
 // });
+$("#metakeywords").tagit({
+    fieldName: "metakeywords[]",
+    allowSpaces: true,
+    tagLimit: 10
+});
 
 $("#jquery-tagIt-default").tagit({
     fieldName: "keywords[]",
     allowSpaces: true,
     tagLimit: 10
 });
+
+$("#jquery-tagIt-default2").tagit({
+    fieldName: "keywords[]",
+    allowSpaces: true,
+    tagLimit: 10
+});
+
+
 
 $("#thumbnail").on("change", function() {
     var showThumbnail = document.querySelector("#show_thumbnail");

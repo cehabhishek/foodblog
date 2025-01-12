@@ -113,7 +113,7 @@
                                 <div class="input-group">
                                     <select class="form-select" name="sub_category" id="sub_category">
                                         @foreach ($subCategories as $subCategory)
-                                            <option value="{{ $subCategory->name }}"
+                                            <option value="{{ $subCategory->id }}"
                                                 @if ($subCategory->name == $post->sub_category) selected @endif>{{ $subCategory->name }}
                                             </option>
                                         @endforeach
@@ -160,31 +160,8 @@
                         </div>
                     </div>
                     <div class="card border-0 mb-4">
-                        <div class="card-header h6 mb-0 bg-none p-3 d-flex">
-                            <div class="flex-1">
-                                <div>Upload Media</div>
-                            </div>
-                            <div>
-                                <a href="#modal-dialog" data-bs-toggle="modal" class="btn btn-primary btn-xs">Upload
-                                    Image</a>
-                            </div>
-                        </div>
-                        <div class="card-body fw-bold" id="images">
 
-                            {{-- <div class="d-flex">
-                                <div class="flex-1 d-flex">
-                                    <div class="input-group">
-                                        <input id="clipboard-default" type="text" class="form-control"
-                                            value="https://github.com/zenorocha/clipboard.js.git" />
-                                        <button class="btn btn-dark" type="button" data-toggle="clipboard"
-                                            data-clipboard-target="#clipboard-default">
-                                            <i class="fa fa-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr /> --}}
-                        </div>
+
                     </div>
                     <div class="card border-0 mb-4">
                         <div class="card-header h6 mb-0 bg-none p-3 d-flex">

@@ -30,6 +30,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
         // $subscribers = Subscriber::all();
         // foreach ($subscribers as $key => $subscriber) {
         //     $this->sendMail($subscriber->email);
@@ -43,11 +44,11 @@ class PostController extends Controller
             "description"       => 'required',
             "visibility"        => 'required',
             "category_id"       => 'required',
-            // "sub_category"      => 'required',
+            "sub_category"      => 'required',
             "keywords"          => 'required',
             "country"           => 'required',
             "date"              => 'required',
-            'thumbnail'         => 'required|image|mimes:jpg,png,jpeg|max:1024',
+            'thumbnail'         => 'required|image|mimes:jpg,png,jpeg,webp|max:1024',
         ];
 
         $this->validate($request, $rules);
@@ -61,10 +62,13 @@ class PostController extends Controller
         $image->resize(1000, 666);
         $keywords = implode(', ', $request->keywords);
 
-        $subCategoryId = SubCategory::where('name', $request->sub_category)->first();
-        // dd($subCategoryId->id);
-        // dd($keywords);
-        $subCategoryId = $request->input('sub_category_id');
+        $subCategory = SubCategory::where('id', $request->sub_category)->first();
+
+
+
+
+
+
         $postData = [
             "title"             =>  $request->title,
             "slug"              =>  Str::slug($request->title),
@@ -72,8 +76,8 @@ class PostController extends Controller
             "description"       =>  $request->description,
             "visibility"        =>  $request->visibility,
             "category_id"       =>  $request->category_id,
-            "sub_category"      =>  $request->sub_category,
-            "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
+            "sub_category"      =>  $subCategory->slug,
+            "sub_category_id"   =>  $request->sub_category,
             "country"           =>  $request->country,
             "date"              =>  $request->date,
             "keywords"          =>  $keywords,
@@ -118,7 +122,13 @@ class PostController extends Controller
         $this->validate($request, $rules);
         $keywords = implode(', ', $request->keywords);
 
-        $subCategoryName = SubCategory::where('name', $request->sub_category)->first();
+        $subCategoryId = '';
+        $subCategoryName = '';
+        if ($request->input('sub_category') != null) {
+            $subCategory = SubCategory::where('id', $request->sub_category)->first();
+            $subCategoryId = $request->input('sub_category');
+            $subCategoryName = $subCategory->name;
+        }
 
         if ($request->file('thumbnail') != null) {
             $post = Post::where('id', $id)->first();
@@ -134,7 +144,7 @@ class PostController extends Controller
             $image->save($destinationPathThumbnail . $imageName);
 
 
-            $subCategoryId = $request->input('sub_category_id');
+
             $postData = [
                 "title"             =>  $request->title,
                 "slug"              =>  Str::slug($request->title),
@@ -142,13 +152,13 @@ class PostController extends Controller
                 "description"       =>  $request->description,
                 "visibility"        =>  $request->visibility,
                 "category_id"       =>  $request->category_id,
-                "sub_category"      =>  $subCategoryName ? $subCategoryName : null,
-                "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
+                "sub_category"      =>  $subCategoryName,
+                "sub_category_id"   =>  $subCategoryId,
                 "keywords"          =>  $keywords,
                 "thumbnail"         =>  $imageName,
             ];
         } else {
-            $subCategoryId = $request->input('sub_category_id');
+
             $postData = [
                 "title"             =>  $request->title,
                 "slug"              =>  Str::slug($request->title),
@@ -156,8 +166,8 @@ class PostController extends Controller
                 "description"       =>  $request->description,
                 "visibility"        =>  $request->visibility,
                 "category_id"       =>  $request->category_id,
-                "sub_category"      =>  $request->sub_category,
-                "sub_category_id"   =>  $subCategoryId ? $subCategoryId : null,
+                "sub_category"      =>  $subCategoryName,
+                "sub_category_id"   =>  $subCategoryId,
                 "keywords"          =>  $keywords,
             ];
         }

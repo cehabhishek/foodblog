@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_id',10);
-            $table->string('name',50);
-            $table->longText('short_description');
+            $table->string('name',255);
+            $table->string('slug',255);
+            $table->string('title',255);
+            $table->longText('meta_description');
+            $table->longText('keywords')->nullable();
             $table->tinyInteger('show_in_menu')->default(0);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable();

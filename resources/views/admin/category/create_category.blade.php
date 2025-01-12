@@ -33,11 +33,7 @@
 @endsection
 @section('content')
     <div id="content" class="app-content">
-        {{-- <ol class="breadcrumb float-xl-end">
-            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-            <li class="breadcrumb-item"><a href="javascript:;">Form Stuff</a></li>
-            <li class="breadcrumb-item active">Form Elements</li>
-        </ol> --}}
+
 
         <h1 class="page-header">
             Create Category And Sub Category
@@ -64,7 +60,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div class="panel panel-inverse" data-sortable-id="form-stuff-12">
+                <div class="panel panel-inverse">
                     <div class="panel-heading">
                         <h4 class="panel-title">Create Cateogry</h4>
                         {{-- <div class="panel-heading-btn">
@@ -80,16 +76,42 @@
                     </div>
 
                     <div class="panel-body">
-                        <form class="row row-cols-lg-auto g-3 align-items-center"
-                            action="{{ route('admin.category.store') }}" method="POST">
+                        <form action="{{ route('admin.category.store') }}" method="POST">
                             @csrf
-                            <div class="col-12">
-                                <input type="text" class="form-control" placeholder="Enter category name" name="name"
-                                    required />
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Category Name</label>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Enter category name"
+                                            name="name" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Category Title</label>
+                                    <div class="mb-3">
+
+                                        <input type="text" class="form-control" placeholder="Enter category name"
+                                            name="title" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="form-label" for="metakeywords">Keywords</label>
+                                    <div class="mb-3">
+                                        <ul id="jquery-tagIt-default">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="form-label">Meta Description</label>
+                                    <div class="mb-3">
+                                        <textarea name="meta_description" class="form-control" placeholder="Enter description" rows="5"></textarea>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100px me-5px">
-                                Add
-                            </button>
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-primary">Post</button>
+                            </div>
                         </form>
                     </div>
 
@@ -118,45 +140,64 @@
                             <form action="{{ route('admin.sub.category.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <fieldset>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="exampleInputEmail1">Select Category</label>
-                                                <select class="form-select" name="category_id" required>
-                                                    <option value="" selected disabled>Select Category</option>
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
 
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label">Sub Category Name</label>
-                                                <input class="form-control" type="text" placeholder="Sub Category"
-                                                    name="name" required />
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="mb-3">
-                                                <label class="form-label">Short Description</label> <span
-                                                    id="meta_description_word" style="font-weight: bold"></span> <b
-                                                    class="text-danger" id="showError"></b>
-                                                <textarea class="form-control" name="short_description" id="short_description" rows="5" required></textarea>
-                                            </div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="exampleInputEmail1">Select Category</label>
+                                            <select class="form-select" name="category_id" required>
+                                                <option value="" selected disabled>Select Category</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
 
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="nf_checkbox_css_1"
-                                            value="1" name="show_in_menu" />
-                                        <label class="form-check-label" for="nf_checkbox_css_1">Show in menu</label>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Sub Category Name</label>
+                                            <input class="form-control" type="text" placeholder="Sub Category"
+                                                name="name" required />
+
+                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100px me-5px">
-                                        Add
-                                    </button>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Title</label>
+                                            <input class="form-control" type="text" placeholder="Title"
+                                                name="title" required />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Keywords</label>
+                                            <ul id="jquery-tagIt-default2">
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Short Description</label> <span
+                                                id="meta_description_word" style="font-weight: bold"></span> <b
+                                                class="text-danger" id="showError"></b>
+                                            <textarea class="form-control" name="meta_description"  rows="5" required></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="nf_checkbox_css_1" value="1"
+                                        name="show_in_menu" />
+                                    <label class="form-check-label" for="nf_checkbox_css_1">Show in menu</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100px me-5px">
+                                    Add
+                                </button>
                                 </fieldset>
                             </form>
                         </div>

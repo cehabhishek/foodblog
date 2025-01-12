@@ -5,6 +5,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\WebsiteTitleDescriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 //     return view('welcome');
 // });
 Route::post('subscribe', [IndexController::class, 'subscribe'])->name('subscribe');
+Route::get('about-us', [IndexController::class, 'aboutUs'])->name('about.us');
 Route::get('website/{page}', [IndexController::class, 'websiteInfo'])->name('show.website.info');
 Route::get('contact-us', [IndexController::class, 'contactUs'])->name('contact.us');
 Route::post('contact-us', [IndexController::class, 'contactUsStore'])->name('contact.us.store');
@@ -57,7 +59,11 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::put('admin/sub_category/update/{id}', [CategoryController::class, 'subCategoryUpdate'])->name('admin.sub.category.update');
 
     Route::put('admin/category/update/{id}', [CategoryController::class, 'updateCategory'])->name('admin.category.update');
+    Route::get('admin/category/edit/{id}', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
     Route::get('admin/category/delete/{id}', [CategoryController::class, 'catDelete'])->name('admin.category.delete');
+
+    Route::put('admin/subcategory/update/{id}', [CategoryController::class, 'subCategoryUpdate'])->name('admin.subcategory.update');
+    Route::get('admin/subcategory/edit/{id}', [CategoryController::class, 'editSubCategory'])->name('admin.subcategory.edit');
     Route::get('admin/sub_category/delete/{id}', [CategoryController::class, 'subCatDelete'])->name('admin.sub.category.delete');
 
     Route::get('admin/posts', [PostController::class, 'index'])->name('admin.post.index');
@@ -73,13 +79,30 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('admin/{page}', [AdminController::class, 'websiteInfoFrom'])->name('admin.website.info.from');
     Route::post('admin/{page}', [AdminController::class, 'updateWebsiteInfo'])->name('admin.website.info.update');
 
+    Route::get('admin/title-description/index', [WebsiteTitleDescriptionController::class, 'titleDescriptionIndex'])->name('admin.title.description.index');
+    Route::get('admin/title-description/edit/{id}', [WebsiteTitleDescriptionController::class, 'titleDescriptionEdit'])->name('admin.title.description.edit');
+    Route::put('admin/title-description/update/{id}', [WebsiteTitleDescriptionController::class, 'titleDescriptionUpdate'])->name('admin.title.description.update');
+
 
 
     Route::post('admin/post/get_sub_category', [AjaxController::class, 'getSubCategory']);
     Route::post('admin/post/upload_image', [AjaxController::class, 'uploadImage']);
 });
 
-Route::get('category/{cat_id}/{cat_slug}', [IndexController::class, 'categoryBlogList'])->name('cat.blog.list');
-Route::get('sub-category/{sub_cat_id}/{sub_cat_slug}', [IndexController::class, 'subCategoryBlogList'])->name('sub.cat.blog.list');
+Route::get('{category}', [IndexController::class, 'categoryBlogList'])->name('cat.post.list');
+Route::get('{category}/{sub_category}', [IndexController::class, 'subCategoryBlogList'])->name('sub.cat.post.list');
+// Route::get('sub-category/{sub_cat_id}/{sub_cat_slug}', [IndexController::class, 'subCategoryBlogList'])->name('sub.cat.blog.list');
 
-Route::get('{post_slug}', [IndexController::class, 'postDetail'])->name('post.detail');
+
+Route::get('{category}/{sub_category}/{post_slug}', [IndexController::class, 'postDetail'])->name('post.detail');
+
+
+
+// Route::get('{category}', [IndexController::class, 'categoryBlogList'])->name('cat.post.list');
+
+
+// Route::get('{category}', [IndexController::class, 'categoryBlogList'])->where('category', '[a-zA-Z]+')->name('cat.post.list');
+
+// Route::get('{sub_category}', [IndexController::class, 'subCategoryBlogList'])->where('sub_category', '[a-zA-Z]+')->name('sub.cat.post.list');
+// Route::get('{category}', [IndexController::class, 'categoryBlogList'])->name('cat.post.list');
+// Route::get('{sub_category}', [IndexController::class, 'subCategoryBlogList'])->name('sub.cat.post.list');

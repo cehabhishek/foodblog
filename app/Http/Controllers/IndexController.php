@@ -14,6 +14,7 @@ use Illuminate\Http\Response;
 use Symfony\Component\Process\Process;
 use App\Mail\NewPostMail;
 use App\Models\ContactUs;
+use App\Models\WebsiteTitleDescription;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use App\Rules\ReCaptcha;
 use Illuminate\Http\RedirectResponse;
@@ -26,54 +27,57 @@ class IndexController extends Controller
         // $tutorials = SubCategory::where('category_id', $category->id)->get();
         $categories = Category::orderBy('id', 'DESC')->get();
         $sliderPosts = Post::latest()->get();
+        $metaTag = WebsiteTitleDescription::where('page','Index')->first();
 
-        return view('frontend.index', compact('categories','sliderPosts'));
+
+        return view('frontend.index', compact('categories', 'sliderPosts','metaTag'));
     }
 
-    public function categoryBlogList($cat_id, $cat_slug)
+    public function categoryBlogList($category)
     {
 
+        $category = Category::where('slug', $category)->first();
+        $posts = Post::where('category_id', $category->id)->orderBy('id', 'DESC')->get();
 
-        $category = Category::where('id',$cat_id)->first();
-        $posts = Post::where('category_id', $cat_id)->orderBy('id','DESC')->paginate(10);
+        if ($posts != null) {
 
-
-        if ($cat_id != null) {
-
-            return view('frontend.blog_list', compact('posts','category'));
+            return view('frontend.cat_blog_list', compact('posts', 'category'));
         } else {
             return view('errors.404');
         }
     }
-    public function subCategoryBlogList($sub_cat_id, $sub_cat_slug)
+    public function subCategoryBlogList($category, $sub_category)
     {
 
+        $subCategory = SubCategory::where('slug', $sub_category)->first();
 
-        $category = SubCategory::where('id',$sub_cat_id)->first();
-
-        $posts = Post::where('sub_category_id', $sub_cat_id)->orderBy('id','DESC')->paginate(10);
+        // dd($category, $subCategory);
 
 
-        if ($sub_cat_id != null) {
+        if ($subCategory != null) {
+            $posts = Post::where('sub_category_id', $subCategory->id)->orderBy('id', 'DESC')->get();
+            $category = Category::where('id', $subCategory->category_id)->first();
 
-            return view('frontend.blog_list', compact('posts','category'));
+            return view('frontend.sub_cat_blog_list', compact('posts', 'subCategory', 'category'));
         } else {
             return view('errors.404');
         }
     }
-    public function postDetail($post_slug)
+    public function postDetail($category, $sub_category = null, $post_slug)
     {
         // dd($post_slug);
+        // dd($post_slug);
         $post = Post::where('slug', $post_slug)->first();
-        $allPosts = Post::where('category_id',$post->category_id)->get();
-        // dd($allPosts);
-        if ($post != null) {
 
+
+        if ($post != null) {
+            $allPosts = Post::where('category_id', $post->category_id)->get();
+            $category = Category::where('id', $post->category_id)->first();
             $sideBarPosts = Post::where(['category_id' => $post->category_id, 'sub_category_id' => $post->sub_category_id])->get();
-            $category = SubCategory::where('id', $post->sub_category_id)->first();
+            $sub_category = SubCategory::where('id', $post->sub_category_id)->first();
             // dd($category);
 
-            return view('frontend.post_detail', compact('post', 'sideBarPosts', 'category','allPosts'));
+            return view('frontend.post_detail', compact('post', 'sideBarPosts', 'allPosts', 'sub_category', 'category'));
         } else {
             return view('errors.404');
         }
@@ -201,5 +205,10 @@ class IndexController extends Controller
     public function viewemail()
     {
         return view('frontend.mail');
+    }
+
+    public function aboutUs()
+    {
+        return view('frontend.about-us');
     }
 }

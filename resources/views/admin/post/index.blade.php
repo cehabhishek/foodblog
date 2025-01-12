@@ -53,8 +53,8 @@
                                 <img src="{{ asset('uploads/post/'.$post->thumbnail) }}" class="rounded h-30px my-n1 mx-n1" width="35px" />
                             </td>
                             <td>{{ $post->title }}</td>
-                            <td>{{ $post->getCategory->name }}</td>
-                            <td>{{ $post->sub_category }}</td>
+                            <td>{{ $post->getCategory->name ?? '' }}</td>
+                            <td>{{ $post->sub_category ?? '' }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->keywords }}</td>
                             <td>{{ $post->visibility }}</td>

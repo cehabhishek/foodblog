@@ -25,13 +25,20 @@ class CategoryController extends Controller
     public function categoryStore(Request $request)
     {
         $rules = [
-            "name"        => 'required|unique:categories',
+            "name"              => 'required|unique:categories',
+            "title"             => 'required',
+            "keywords"          => 'required',
+            "meta_description"  => 'required',
         ];
 
         $this->validate($request, $rules);
 
         $categoryData = [
-            "name"  => $request->name
+            "name"              => $request->name,
+            "title"             => $request->title,
+            "slug"              => Str::slug($request->name),
+            "keywords"          => implode(',', $request->keywords),
+            "meta_description"  => $request->meta_description,
         ];
         Category::insert($categoryData);
         return back()->with('success', 'Category created successfully');
@@ -40,43 +47,27 @@ class CategoryController extends Controller
     public function subCategoryStore(Request $request)
     {
         $rules = [
-            "category_id"           => 'required',
-            "name"                  => 'required|unique:sub_categories',
-            "short_description"     => 'required',
-            // "image"                 => 'required|image|mimes:jpeg,jpg,png|max:512',
+            "category_id"       => 'required',
+            "name"              => 'required|unique:sub_categories',
+            "title"             => 'required',
+            "keywords"          => 'required',
+            "meta_description"  => 'required',
 
         ];
+        // dd($request->all());
 
         // dd(Str::slug($request->name));
         $this->validate($request, $rules);
 
 
-        // $image = Image::make($request->file('image'));
-
-        // $imageExtension  = strtolower(trim($request->file('image')->getclientoriginalextension()));
-        // $imageName = Str::slug($request->name) . '.' . $imageExtension;
-
-        // $destinationPathThumbnail = public_path('/uploads/sub_category/');
-        // $image->resize(430, 168);
-
-        if ($request->has('show_in_menu')) {
-            $subCategoryData = [
-
-                "category_id"           => $request->category_id,
-                "name"                  => $request->name,
-                "short_description"     => $request->short_description,
-                "show_in_menu"          => $request->show_in_menu,
-                // "image"                 => $imageName,
-            ];
-        } else {
-            $subCategoryData = [
-
-                "category_id"           => $request->category_id,
-                "name"                  => $request->name,
-                "short_description"     => $request->short_description,
-                // "image"                 => $imageName,
-            ];
-        }
+        $subCategoryData = [
+            "category_id"           => $request->category_id,
+            "name"                  => $request->name,
+            "slug"                  => Str::slug($request->name),
+            "title"                 => $request->title,
+            "keywords"              => implode(',', $request->keywords),
+            "meta_description"      => $request->meta_description,
+        ];
 
 
         SubCategory::insert($subCategoryData);
@@ -84,82 +75,82 @@ class CategoryController extends Controller
         // $image->move(public_path('/uploads/sub_category'), $imageName);
         return back()->with('success', 'Sub Category created successfully');
     }
+
+    public function editCategory($id){
+        $category = Category::where('id', $id)->first();
+        return view('admin.category.edit_category',compact('category'));
+    }
+
+
+
+
     public function updateCategory(Request $request, $id)
     {
+        // dd($request->all());
         $rules = [
-            "name"        => 'required|unique:categories',
+            "name"                  => 'required|unique:categories,name,' . $id,
+            "title"                 => 'required',
+            "keywords"              => 'required',
+            "meta_description"      => 'required',
         ];
 
         $this->validate($request, $rules);
 
         $categoryData = [
-            "name"  => $request->name
+            "name"              => $request->name,
+            "title"             => $request->title,
+            "slug"              => Str::slug($request->name),
+            "keywords"          => implode(',', $request->keywords),
+            "meta_description"  => $request->meta_description,
         ];
         Category::where('id', $id)->update($categoryData);
         return back()->with('success', 'Category created successfully');
     }
 
+    public function editSubCategory($id){
+        $subCategory = SubCategory::where('id', $id)->first();
+        $category = Category::all();
+        return view('admin.category.edit_sub_category',compact('subCategory','category'));
+    }
     public function subCategoryUpdate(Request $request, $id)
     {
-        // dd($id);
+        // dd($request->all());
         $rules = [
             "category_id"           => 'required',
             "name"                  => 'required|unique:sub_categories,name,' . $id,
-            "short_description"     => 'required',
-            // "image"                 => 'nullable|image|mimes:jpeg,jpg,png|max:512',
+            "title"                 => 'required',
+            "keywords"              => 'required',
+            "meta_description"      => 'required',
 
         ];
 
-        // dd(Str::slug($request->name));
         $this->validate($request, $rules);
 
-        // if ($request->file('image') != null) {
-        //     $subCategory = SubCategory::where('id', $id)->first();
-
-        //     $image = Image::make($request->file('image'));
-
-        //     $imageExtension  = strtolower(trim($request->file('image')->getclientoriginalextension()));
-        //     $imageName = Str::slug($request->name) . time().'.' . $imageExtension;
-
-        //     $destinationPathThumbnail = public_path('/uploads/sub_category/');
-        //     $image->resize(430, 168);
-        //     unlink(public_path('/uploads/sub_category/' . $subCategory->image));
-        //     $image->save($destinationPathThumbnail . $imageName);
-
-        //     $subCategoryData = [
-
-        //         "category_id"           => $request->category_id,
-        //         "name"                  => $request->name,
-        //         "short_description"     => $request->short_description,
-        //         "image"                 => $imageName,
-        //     ];
-        // } else {
-        //     $subCategoryData = [
-
-        //         "category_id"           => $request->category_id,
-        //         "name"                  => $request->name,
-        //         "short_description"     => $request->short_description,
-        //     ];
-        // }
         $subCategoryData = [
-
             "category_id"           => $request->category_id,
+            "slug"                  => Str::slug($request->name),
             "name"                  => $request->name,
-            "short_description"     => $request->short_description,
+            "title"                 => $request->title,
+            "keywords"              => implode(',', $request->keywords),
+            "meta_description"      => $request->meta_description,
         ];
-        SubCategory::where('id',$id)->update($subCategoryData);
-        return back()->with('success','Sub Category updated successfully');
+        SubCategory::where('id', $id)->update($subCategoryData);
+        return back()->with('success', 'Sub Category updated successfully');
         // dd($request->all(), $id);
     }
 
-    public function catDelete($id){
-        Category::where('id',$id)->delete();
-        return back()->with('success','Category deleted successfully');
+    public function catDelete($id)
+    {
+        Category::where('id', $id)->delete();
+        return back()->with('success', 'Category deleted successfully');
     }
-    public function subCatDelete($id){
-        
-        SubCategory::where('id',$id)->delete();
-        
-        return back()->with('success','Category deleted successfully');
+    public function subCatDelete($id)
+    {
+
+        SubCategory::where('id', $id)->delete();
+
+        return back()->with('success', 'Category deleted successfully');
     }
+
+
 }
