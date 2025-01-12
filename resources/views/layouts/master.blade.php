@@ -674,15 +674,15 @@
                         <div class="swiper swiper-ticker swiper-ticker-sep px-2" style="--uc-ticker-gap: 32px"
                             data-uc-swiper="items: auto; gap: 32; center: true; center-bounds: true; autoplay: 10000; speed: 10000; autoplay-delay: 0.1; loop: true; allowTouchMove: false; freeMode: true; autoplay-disableOnInteraction: true;">
                             <div class="swiper-wrapper">
-                                @foreach ($posts as $post)
+                                @foreach ($headerPosts as $headerPost)
                                     <div class="swiper-slide text-white">
                                         <div class="type-post post panel">
                                             <a href="{{ route('post.detail', [
-                                                'category' => $post->getCategory->slug,
-                                                'sub_category' => $post->getSubCategory->slug,
-                                                'post_slug' => $post->slug,
+                                                'category' => $headerPost->getCategory->slug,
+                                                'sub_category' => $headerPost->getSubCategory->slug,
+                                                'post_slug' => $headerPost->slug,
                                             ]) }}"
-                                                class="fs-7 fw-normal text-none text-inherit">{{ $post->title }}</a>
+                                                class="fs-7 fw-normal text-none text-inherit">{{ $headerPost->title }}</a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -1064,29 +1064,10 @@
                                 <img class="uc-logo w-100px text-gray-900 dark:text-white" src="../assets/images/demo-three/common/logo.svg" alt="News5" data-uc-svg="" hidden=""><svg width="143" height="30" viewBox="0 0 143 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="uc-logo w-100px text-gray-900 dark:text-white uc-svg"><g clip-path="url(#clip0_350_12)" fill="#000"><path d="M.052.512V29.65h10.863V11.19h3.077a5 5 0 013.58 1.51l4.05 4.152a5 5 0 011.42 3.491v9.307h9.93V15.626a5 5 0 00-1.351-3.418l-9.47-10.113A5 5 0 0018.5.512H.051z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M42.291 14.603h-6.32v7.444a2 2 0 001.06 1.766l9.862 5.25a5 5 0 002.35.586h13.393v-7.166H53.55a5 5 0 01-2.424-.627l-4.773-2.647a1.184 1.184 0 01-.61-1.035h16.893v-5.7H53.55a5 5 0 01-2.424-.628L46.353 9.2a1.184 1.184 0 01-.61-1.036h16.893V.512H35.97v7.724a5 5 0 002.65 4.414l3.67 1.953zM65.636.512V29.65h14.032a5 5 0 003.998-1.998l3.685-4.908v6.906h10.825a5 5 0 003.998-1.998l7.362-9.806a5 5 0 001.002-3.002V.513h-7.962v9.618a5 5 0 01-1.061 3.08l-3.003 3.84a5 5 0 01-3.939 1.92h-1.72V.512h-8.785v9.619a5 5 0 01-1.061 3.08l-3.003 3.84a5 5 0 01-3.939 1.92h-1.72V.512h-8.71zm66.361 17.448h-18.459v-7.827a5 5 0 012.777-4.478l9.31-4.621a5.002 5.002 0 012.223-.522h14.826v7.263h-10.759a5.01 5.01 0 00-1.149.134l-3.877.915a3.472 3.472 0 00-2.674 3.377h18.459v7.827a5 5 0 01-2.777 4.479l-9.31 4.62a5.003 5.003 0 01-2.223.522h-14.826v-7.263h10.759c.387 0 .772-.045 1.148-.133l3.877-.915a3.472 3.472 0 002.675-3.378z"></path></g><defs><clipPath id="clip0_350_12"><path fill="#fff" d="M0 0h143v30H0z"></path></clipPath></defs></svg>
                             </div>
                             <div class="vr mx-2 d-none lg:d-inline-flex"></div>
-                            <p class="footer-copyrights">News5 © 2024, All rights reserved.</p>
-                            <ul class="footer-site-links nav-x gap-2 fw-medium justify-center lg:justify-start">
-                                <li><a class="uc-link text-underline hover:text-gray-900 dark:hover:text-white duration-150" href="page-privacy.html">Privacy notice</a></li>
-                                <li><a class="uc-link text-underline hover:text-gray-900 dark:hover:text-white duration-150" href="page-terms.html">Terms of condition</a></li>
-                                <li><a class="uc-link text-underline hover:text-gray-900 dark:hover:text-white duration-150" href="page-faq.html">FAQ</a></li>
-                            </ul>
+                            <p class="footer-copyrights">News5 © 2024, All rights reserved. Developed By <a href="https:thesoftsys.com" target="_blank">The SoftSys</a> </p>
+
                         </div>
-                        <div class="panel hstack justify-center gap-2 lg:gap-3">
-                            <div class="footer-lang d-inline-block">
-                                <a href="#" class="hstack gap-1 text-none fw-medium" role="button" aria-haspopup="true">
-                                    <i class="icon icon-1 unicon-earth-filled"></i>
-                                    <span>English</span>
-                                    <span data-uc-drop-parent-icon="" class="uc-icon uc-drop-parent-icon"><svg width="12" height="12" viewBox="0 0 12 12"><polyline fill="none" stroke="#000" stroke-width="1.1" points="1 3.5 6 8.5 11 3.5"></polyline></svg></span>
-                                </a>
-                                <div class="p-2 bg-white dark:bg-gray-800 shadow-xs rounded w-150px uc-drop" data-uc-drop="mode: click; boundary: !.uc-footer-bottom; animation: uc-animation-slide-top-small; duration: 150;">
-                                    <ul class="nav-y gap-1 fw-medium items-end">
-                                        <li><a href="#en">English</a></li>
-                                        <li><a href="#ar">العربية</a></li>
-                                        <li><a href="#ch">中文</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -149,16 +149,16 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- <div class="post-author panel py-4 px-3 sm:p-3 xl:p-4 bg-gray-25 dark:bg-opacity-10 rounded lg:rounded-2">
+                    <div class="post-author panel py-4 px-3 sm:p-3 xl:p-4 bg-gray-25 dark:bg-opacity-10 rounded lg:rounded-2">
                         <div class="row g-4 items-center">
                             <div class="col-12 sm:col-5 xl:col-3">
                                 <figure class="featured-image m-0 ratio ratio-1x1 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="../assets/images/common/img-fallback.png" data-src="../assets/images/demo-seven/posts/post-author.jpg" alt="Amir Nisi" data-uc-img="loading: lazy">
+                                    <img class="media-cover image uc-transition-scale-up uc-transition-opaque" src="{{ asset('frontend/images/logo.jpg') }}" data-src="{{ asset('frontend/images/logo.jpg') }}" alt="Amir Nisi" data-uc-img="loading: lazy">
                                 </figure>
                             </div>
                             <div class="col">
                                 <div class="panel vstack items-start gap-2 md:gap-3">
-                                    <h4 class="h5 lg:h4 m-0">Amir Nisi</h4>
+                                    <h4 class="h5 lg:h4 m-0">World Food Business</h4>
                                     <p class="fs-6 lg:fs-5">Creative and experienced content writer with 6+ years of experience lazy to create unique content strategy for News5 to turn website visitors into customers.</p>
                                     <ul class="nav-x gap-1 text-gray-400 dark:text-white">
                                         <li>
@@ -174,9 +174,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="post-navigation panel vstack sm:hstack justify-between gap-2 mt-8 xl:mt-9">
+                        @php
+                            $existPost = [];
+                        @endphp
                         @foreach ($allPosts->take(1) as $allPost)
+                        @php
+                            $existPost[] = $allPost->id;
+                        @endphp
                             <div class="new-post panel hstack w-100 sm:w-1/2">
                                 <div class="panel hstack justify-center w-100px h-100px">
                                     <figure
@@ -208,7 +214,12 @@
                                     class="position-cover"></a>
                             </div>
                         @endforeach
-                        @foreach ($allPosts->take(1) as $allPost)
+                        @foreach ($allPosts->take(2) as $allPost)
+                        @php
+                            $existPost[] = $allPost->id;
+                        @endphp
+                        @if (!in_array($allPost->id, $existPost))
+
                             <div class="new-post panel hstack w-100 sm:w-1/2">
                                 <div class="panel vstack justify-center px-2 gap-1 w-1/3 text-end">
                                     <span class="fs-7 opacity-60">Next Article</span>
@@ -239,108 +250,49 @@
                                 ]) }}"
                                     class="position-cover"></a>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                     <div class="post-related panel border-top pt-2 mt-8 xl:mt-9">
                         <h4 class="h5 xl:h4 mb-5 xl:mb-6">Related to this topic:</h4>
                         <div class="row child-cols-6 md:child-cols-3 gx-2 gy-4 sm:gx-3 sm:gy-6">
+                            @foreach ($allPosts->take(6) as $allPost)
+                            @if (!in_array($allPost->id, $existPost))
                             <div>
                                 <article class="post type-post panel vstack gap-2">
                                     <figure
                                         class="featured-image m-0 ratio ratio-4x3 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
                                         <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                            src="../assets/images/common/img-fallback.png"
-                                            data-src="../assets/images/demo-seven/posts/img-07.jpg"
+                                            src="{{ asset('uploads/post/' . $allPost->thumbnail) }}"
+                                            data-src="{{ asset('uploads/post/' . $allPost->thumbnail) }}"
                                             alt="{{ $allPost->title }}"
                                             data-uc-img="loading: lazy">
-                                        <a href="blog-details.html" class="position-cover"
+                                        <a href="{{ route('post.detail', [
+                                    'category' => $allPost->getCategory->slug,
+                                    'sub_category' => $allPost->getSubCategory->slug,
+                                    'post_slug' => $allPost->slug,
+                                ]) }}" class="position-cover"
                                             data-caption="{{ $allPost->title }}"></a>
                                     </figure>
                                     <div class="post-header panel vstack gap-1">
                                         <h5 class="h6 md:h5 m-0">
-                                            <a class="text-none" href="blog-details.html">{{ $allPost->title }}</a>
+                                            <a class="text-none" href="{{ route('post.detail', [
+                                    'category' => $allPost->getCategory->slug,
+                                    'sub_category' => $allPost->getSubCategory->slug,
+                                    'post_slug' => $allPost->slug,
+                                ]) }}">{{ $allPost->title }}</a>
                                         </h5>
                                         <div class="post-date hstack gap-narrow fs-7 opacity-60">
-                                            <span>Feb 28, 2024</span>
+                                            <span>{{ \Carbon\Carbon::parse($allPost->date)->format('M j, Y') }}</span>
                                         </div>
                                     </div>
                                 </article>
                             </div>
-                            <div>
-                                <article class="post type-post panel vstack gap-2">
-                                    <figure
-                                        class="featured-image m-0 ratio ratio-4x3 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                        <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                            src="../assets/images/common/img-fallback.png"
-                                            data-src="../assets/images/demo-seven/posts/img-08.jpg"
-                                            alt="AI and Marketing: Unlocking Customer Insights"
-                                            data-uc-img="loading: lazy">
-                                        <a href="blog-details.html" class="position-cover"
-                                            data-caption="AI and Marketing: Unlocking Customer Insights"></a>
-                                    </figure>
-                                    <div class="post-header panel vstack gap-1">
-                                        <h5 class="h6 md:h5 m-0">
-                                            <a class="text-none" href="blog-details.html">AI and Marketing: Unlocking
-                                                Customer Insights</a>
-                                        </h5>
-                                        <div class="post-date hstack gap-narrow fs-7 opacity-60">
-                                            <span>Feb 22, 2024</span>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div>
-                                <article class="post type-post panel vstack gap-2">
-                                    <figure
-                                        class="featured-image m-0 ratio ratio-4x3 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                        <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                            src="../assets/images/common/img-fallback.png"
-                                            data-src="../assets/images/demo-seven/posts/img-09.jpg"
-                                            alt="Hidden Gems: Underrated Travel Destinations Around the World"
-                                            data-uc-img="loading: lazy">
-                                        <a href="blog-details.html" class="position-cover"
-                                            data-caption="Hidden Gems: Underrated Travel Destinations Around the World"></a>
-                                    </figure>
-                                    <div class="post-header panel vstack gap-1">
-                                        <h5 class="h6 md:h5 m-0">
-                                            <a class="text-none" href="blog-details.html">Hidden Gems: Underrated Travel
-                                                Destinations Around the World</a>
-                                        </h5>
-                                        <div class="post-date hstack gap-narrow fs-7 opacity-60">
-                                            <span>Feb 14, 2024</span>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
-                            <div>
-                                <article class="post type-post panel vstack gap-2">
-                                    <figure
-                                        class="featured-image m-0 ratio ratio-4x3 rounded uc-transition-toggle overflow-hidden bg-gray-25 dark:bg-gray-800">
-                                        <img class="media-cover image uc-transition-scale-up uc-transition-opaque"
-                                            src="../assets/images/common/img-fallback.png"
-                                            data-src="../assets/images/demo-seven/posts/img-10.jpg"
-                                            alt="Eco-Tourism: Traveling Responsibly and Sustainably"
-                                            data-uc-img="loading: lazy">
-                                        <a href="blog-details.html" class="position-cover"
-                                            data-caption="Eco-Tourism: Traveling Responsibly and Sustainably"></a>
-                                    </figure>
-                                    <div class="post-header panel vstack gap-1">
-                                        <h5 class="h6 md:h5 m-0">
-                                            <a class="text-none" href="blog-details.html">Eco-Tourism: Traveling
-                                                Responsibly and Sustainably</a>
-                                        </h5>
-                                        <div class="post-date hstack gap-narrow fs-7 opacity-60">
-                                            <span>Feb 8, 2024</span>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
+                            @endif
+                            @endforeach
+
                         </div>
                     </div>
-                    <a href="#commont"
-                        class="btn h-56px w-100 mt-8 xl:mt-9 text-black dark:text-white bg-gray-25 dark:bg-opacity-10 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <span>Be the first to write a comment.</span>
-                    </a>
                 </div>
             </div>
         </article>

@@ -37,8 +37,8 @@ class IndexController extends Controller
     {
 
         $category = Category::where('slug', $category)->first();
-        $posts = Post::where('category_id', $category->id)->orderBy('id', 'DESC')->get();
-
+        $posts = Post::where('category_id', $category->id)->latest()->paginate(15);
+        // dd($posts);
         if ($posts != null) {
 
             return view('frontend.cat_blog_list', compact('posts', 'category'));

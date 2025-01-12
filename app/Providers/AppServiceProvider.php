@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', $categories);
         });
         view()->composer('*', function ($view) {
-            $posts = Post::latest()->get();
-            $view->with('posts', $posts);
+            $headerPosts = Post::latest()->get();
+            $view->with('headerPosts', $headerPosts);
         });
     }
 }

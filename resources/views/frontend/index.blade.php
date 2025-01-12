@@ -236,7 +236,7 @@
                                             <h2
                                                 class="h6 ft-tertiary fw-bold ls-0 text-uppercase m-0 text-black dark:text-white">
                                                 <a class="hstack d-inline-flex gap-0 text-none hover:text-primary duration-150"
-                                                    href="blog-category.html">
+                                                    href="{{ route('cat.post.list',['category' => $category->slug]) }}">
                                                     <span>{{ $category->name }}</span>
                                                     <i class="icon-1 fw-bold unicon-chevron-right"></i>
                                                 </a>
@@ -404,7 +404,7 @@
                                                 <h2
                                                     class="h6 ft-tertiary fw-bold ls-0 text-uppercase m-0 text-black dark:text-white">
                                                     <a class="hstack d-inline-flex gap-0 text-none hover:text-primary duration-150"
-                                                        href="blog-category.html">
+                                                        href="{{ route('cat.post.list',['category' => $category->slug]) }}">
                                                         <span>{{ $category->name }}</span>
                                                         <i class="icon-1 fw-bold unicon-chevron-right"></i>
                                                     </a>
@@ -583,7 +583,7 @@
                                                 <h2
                                                     class="h6 ft-tertiary fw-bold ls-0 text-uppercase m-0 text-black dark:text-white">
                                                     <a class="hstack d-inline-flex gap-0 text-none hover:text-primary duration-150"
-                                                        href="blog-category.html">
+                                                        href="{{ route('cat.post.list',['category' => $category->slug]) }}">
                                                         <span>{{ $category->name }}</span>
                                                         <i class="icon-1 fw-bold unicon-chevron-right"></i>
                                                     </a>
@@ -733,7 +733,7 @@
                                                 <h2
                                                     class="h6 ft-tertiary fw-bold ls-0 text-uppercase m-0 text-black dark:text-white">
                                                     <a class="hstack d-inline-flex gap-0 text-none hover:text-primary duration-150"
-                                                        href="blog-category.html">
+                                                        href="{{ route('cat.post.list',['category' => $category->slug]) }}">
                                                         <span>{{ $category->name }}</span>
                                                         <i class="icon-1 fw-bold unicon-chevron-right"></i>
                                                     </a>
@@ -817,7 +817,7 @@
                                                 <h2
                                                     class="h6 ft-tertiary fw-bold ls-0 text-uppercase m-0 text-black dark:text-white">
                                                     <a class="hstack d-inline-flex gap-0 text-none hover:text-primary duration-150"
-                                                        href="blog-category.html">
+                                                        href="{{ route('cat.post.list',['category' => $category->slug]) }}">
                                                         <span>{{ $category->name }}</span>
                                                         <i class="icon-1 fw-bold unicon-chevron-right"></i>
                                                     </a>

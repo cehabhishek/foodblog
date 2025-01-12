@@ -127,18 +127,7 @@
                             </div>
                             <div class="nav-pagination pt-3 mt-6 lg:mt-9 border-top border-gray-100 dark:border-gray-800">
                                 <ul class="nav-x uc-pagination hstack gap-1 justify-center ft-secondary" data-uc-margin="">
-                                    <li>
-                                        <a href="#"><span class="icon icon-1 unicon-chevron-left"></span></a>
-                                    </li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#" class="uc-active">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li class="uc-disabled"><span>…</span></li>
-                                    <li><a href="#">8</a></li>
-                                    <li><a href="#">9</a></li>
-                                    <li>
-                                        <a href="#"><span class="icon icon-1 unicon-chevron-right"></span></a>
-                                    </li>
+                                    {{ $posts->links() }}
                                 </ul>
                             </div>
                         </div>
