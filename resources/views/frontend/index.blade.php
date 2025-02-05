@@ -642,9 +642,9 @@
                                                                                             <div
                                                                                                 class="post-author hstack gap-1">
                                                                                                 <a href="page-author.html"
-                                                                                                    data-uc-tooltip="David Peterson"><img
+                                                                                                    data-uc-tooltip="World Food Business"><img
                                                                                                         src="../assets/images/avatars/01.png"
-                                                                                                        alt="David Peterson"
+                                                                                                        alt="World Food Business"
                                                                                                         class="w-24px h-24px rounded-circle"></a>
                                                                                                 <a href="page-author.html"
                                                                                                     class="text-black dark:text-white text-none fw-bold">David
@@ -859,9 +859,9 @@
                                                                                 <div>
                                                                                     <div class="post-author hstack gap-1">
                                                                                         <a href="page-author.html"
-                                                                                            data-uc-tooltip="David Peterson"><img
+                                                                                            data-uc-tooltip="World Food Business"><img
                                                                                                 src="../assets/images/avatars/01.png"
-                                                                                                alt="David Peterson"
+                                                                                                alt="World Food Business"
                                                                                                 class="w-24px h-24px rounded-circle"></a>
                                                                                         <a href="page-author.html"
                                                                                             class="text-black dark:text-white text-none fw-bold">David

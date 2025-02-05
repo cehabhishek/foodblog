@@ -25,7 +25,7 @@
     <link href="{{ asset('admin/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
         rel="stylesheet" />
     @yield('schema')
-
+    @yield('modalStyle')
 </head>
 
 <body>
@@ -52,8 +52,7 @@
 
             <div class="navbar-nav">
                 <div class="navbar-item navbar-user dropdown">
-                    <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center"
-                        data-bs-toggle="dropdown">
+                    <a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
                         <img src="{{ asset('frontend/images/logo.png') }}" alt />
                         <span>
                             <span class="d-none d-md-inline">CodingIz</span>
@@ -144,6 +143,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="menu-item has-sub @if (Request::path() == 'admin/post/create') active @endif ">
+                        <a href="javascript:;" class="menu-link">
+                            <div class="menu-icon">
+                                <i class="fa fa-gem"></i>
+                            </div>
+                            <div class="menu-text">Manage Newslatter</div>
+                            <div class="menu-caret"></div>
+                        </a>
+                        <div class="menu-submenu ">
+                            <div class="menu-item @if (Request::path() == 'admin/post/create') active @endif">
+                                <a href="{{ route('admin.newslatter.create') }}" class="menu-link">
+                                    <div class="menu-text">Create Newslatter </div>
+                                </a>
+                            </div>
+
+                            <div class="menu-item">
+                                <a href="{{ route('admin.post.index') }}" class="menu-link">
+                                    <div class="menu-text">All Post </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="menu-item has-sub">
                         <a href="javascript:;" class="menu-link">
                             <div class="menu-icon">
@@ -224,37 +245,62 @@
     <script src="{{ asset('admin/js/app.min.js') }}" type="7caf5af534b7f033feccb426-text/javascript"></script>
 
 
-    <script src="{{ asset('admin/plugins/gritter/js/jquery.gritter.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.canvaswrapper.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.colorhelpers.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.saturated.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.browser.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.drawSeries.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.uiConstants.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.time.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.resize.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.pie.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.crosshair.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.categories.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.navigate.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.touchNavigate.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.hover.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.touch.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.selection.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.symbol.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.legend.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/jquery-sparkline/jquery.sparkline.min.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/jvectormap-next/jquery-jvectormap.min.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/jvectormap-content/world-mill.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
-    <script src="{{ asset('admin/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/gritter/js/jquery.gritter.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.canvaswrapper.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.colorhelpers.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.saturated.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.browser.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.drawSeries.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.uiConstants.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.time.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.resize.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.pie.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.crosshair.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.categories.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.navigate.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.touchNavigate.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.hover.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.touch.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.selection.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.symbol.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/flot/source/jquery.flot.legend.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/jvectormap-next/jquery-jvectormap.min.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/jvectormap-content/world-mill.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
+    <script src="{{ asset('admin/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}"
+        type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
     <script src="{{ asset('admin/js/demo/dashboard.js') }}" type="01db3e124b6f27ba3de85f5c-text/javascript"></script>
     <script src="{{ asset('admin/js/jquery-ui.min.js') }}"
         integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('admin/plugins/tag-it/js/tag-it.min.js') }}"></script>
     <script src="{{ asset('admin/plugins/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
-    <script src="{{ asset('admin/js/demo/form-plugins.demo.js') }}" type="ac643f90aac718d94d6f9fda-text/javascript"></script>
+    <script src="{{ asset('admin/js/demo/form-plugins.demo.js') }}" type="ac643f90aac718d94d6f9fda-text/javascript">
+    </script>
     <script src="{{ asset('admin/plugins/summernote/dist/summernote-lite.min.js') }}"></script>
 
     <script src="{{ asset('admin/plugins/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
@@ -393,7 +439,113 @@
     </script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js"></script>
     <script src="{{ asset('admin/js/custom.js') }}"></script>
+    <script>
+        $('#submitSelectedPosts').on('click', function () {
+          // Get all selected post IDs
+          const selectedPosts = [];
+          $('.post-checkbox:checked').each(function () {
+            selectedPosts.push($(this).val());
+          });
+      
+          // Send the selected post IDs to the backend via AJAX
+          $.ajax({
+            url: '#', // Your route to handle submission
+            type: 'POST',
+            data: {
+              _token: '{{ csrf_token() }}', // Laravel CSRF token
+              post_ids: selectedPosts
+            },
+            success: function (response) {
+              alert('Posts submitted successfully!');
+              console.log(response);
+            },
+            error: function (error) {
+              alert('An error occurred!');
+              console.error(error);
+            }
+          });
+        });
+    </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("dynamic-fields-container");
+
+    // Add new field row
+    container.addEventListener("click", (e) => {
+        if (e.target.classList.contains("add-field")) {
+            const currentField = e.target.closest(".dynamic-field");
+            const newField = currentField.cloneNode(true);
+
+            // Clear the cloned inputs
+            newField.querySelectorAll("input").forEach((input) => {
+                input.value = "";
+            });
+
+            // Ensure only the first 'Add' button is shown and others are hidden
+            newField.querySelector(".add-field").style.display = "none";
+
+            // Show the remove button in the new row
+            newField.querySelector(".remove-field").style.display = "inline-block";
+
+            // Append the new field row to the container
+            container.appendChild(newField);
+        }
+
+        // Remove field row
+        if (e.target.classList.contains("remove-field")) {
+            const fieldToRemove = e.target.closest(".dynamic-field");
+            fieldToRemove.remove();
+        }
+    });
+});
+    
+    // $("#createNewslatter").on('click',function(){
+    //     alert('adfsd')
+    // })
+
+
+    document.getElementById('addPost').addEventListener('click', function () {
+        let selectedPosts = [];
+        document.querySelectorAll('.form-check-input:checked').forEach(function (checkbox) {
+            selectedPosts.push(checkbox.value);
+        });
+
+        // Set selected post IDs to the input field
+        document.getElementById('postId').value = selectedPosts.join(', ');
+
+         // Close the modal
+         let modalElement = document.getElementById('exampleModal');
+        let modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+            modalInstance.hide();
+        }
+    });
+
+    document.getElementById('createNewslatter').addEventListener('click', function () {
+        let bannerImages = [];
+        let bannerUrls = [];
+
+        // Get all file inputs and text inputs
+        document.querySelectorAll('input[name="bannerimage[]"]').forEach(function (input) {
+            if (input.files.length > 0) {
+                bannerImages.push(input.files[0].name); // Only stores file name
+            }
+        });
+
+        document.querySelectorAll('input[name="bannerurl[]"]').forEach(function (input) {
+            bannerUrls.push(input.value);
+        });
+
+        console.log("Banner Images: ", bannerImages);
+        console.log("Banner URLs: ", bannerUrls);
+
+        // You can set these values into a hidden input field if needed
+        document.getElementById('hiddenBannerImages').value = JSON.stringify(bannerImages);
+        document.getElementById('hiddenBannerUrls').value = JSON.stringify(bannerUrls);
+    });
+
+    </script>
 </body>
 
 

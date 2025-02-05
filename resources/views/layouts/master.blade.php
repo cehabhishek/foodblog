@@ -699,81 +699,7 @@
                         <div class="uc-navbar-center gap-2 lg:gap-3 flex-1">
                             <ul class="uc-navbar-nav gap-3 justify-between flex-1 fs-6 fw-bold"
                                 style="--uc-nav-height: 48px">
-                                <li>
-                                    <a href="#"><span class="icon-1 unicon-finance"></span></a>
-                                    <div class="uc-navbar-dropdown ft-primary text-unset p-3 pb-4 rounded-0 hide-scrollbar"
-                                        data-uc-drop=" offset: 0; boundary: !.navbar-container; stretch: x; animation: uc-animation-slide-top-small; duration: 150;">
-                                        <div class="row child-cols col-match g-2">
-                                            <div class="col-2">
-                                                <ul class="uc-nav uc-navbar-dropdown-nav">
-                                                    <li><a href="blog-category.html">Trending</a></li>
-                                                    <li><a href="blog-category.html">Politics</a></li>
-                                                    <li><a href="blog-category.html">Opinions</a></li>
-                                                    <li><a href="blog-category.html">World</a></li>
-                                                    <li><a href="blog-category.html">Media</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-2">
-                                                <ul class="uc-nav uc-navbar-dropdown-nav">
-                                                    <li><a href="blog-category.html">Tech</a></li>
-                                                    <li><a href="blog-category.html">Business</a></li>
-                                                    <li><a href="blog-category.html">Fashion</a></li>
-                                                    <li><a href="blog-category.html">Arts</a></li>
-                                                    <li><a href="blog-category.html">Food</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-2">
-                                                <ul class="uc-nav uc-navbar-dropdown-nav">
-                                                    <li><a href="blog-category.html">Economy</a></li>
-                                                    <li><a href="blog-category.html">Finance</a></li>
-                                                    <li><a href="blog-category.html">Education</a></li>
-                                                    <li><a href="blog-category.html">Health</a></li>
-                                                    <li><a href="blog-category.html">National</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-2">
-                                                <ul class="uc-nav uc-navbar-dropdown-nav">
-                                                    <li><a href="blog-category.html">E-Books</a></li>
-                                                    <li><a href="blog-category.html">Press</a></li>
-                                                    <li><a href="blog-category.html">Podcasts</a></li>
-                                                    <li><a href="blog-category.html">Entertainments</a></li>
-                                                    <li><a href="blog-category.html">Weather</a></li>
-                                                </ul>
-                                            </div>
-                                            <div>
-                                                <div class="uc-navbar-newsletter panel vstack">
-                                                    <h6 class="fs-6 ft-tertiary fw-medium">Newsletter</h6>
-                                                    <form class="hstack gap-1 bg-gray-300 bg-opacity-10">
-                                                        <input type="email"
-                                                            class="form-control-plaintext form-control-xs fs-6 dark:text-white"
-                                                            placeholder="Your email address..">
-                                                        <button type="submit"
-                                                            class="btn btn-sm btn-primary fs-6 rounded-0">Subscribe</button>
-                                                    </form>
-                                                    <p class="fs-7 mt-1">Do not worry, we don't spam!</p>
-                                                    <ul class="nav-x gap-2 mt-3">
-                                                        <li>
-                                                            <a href="#fb"><i
-                                                                    class="icon icon-2 unicon-logo-facebook"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#x"><i
-                                                                    class="icon icon-2 unicon-logo-x-filled"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#in"><i
-                                                                    class="icon icon-2 unicon-logo-instagram"></i></a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#yt"><i
-                                                                    class="icon icon-2 unicon-logo-youtube"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                <li><a href="{{ route('index') }}"><span class="icon-1 unicon-finance"></span></a></li>
                                 @foreach ($categories as $category)
                                     <li>
                                         <a href="#">{{ $category->name }} <span
@@ -1014,15 +940,15 @@
                             <div class="col-6 md:col">
                                 <div class="widget links-widget vstack gap-3">
                                     <div class="widgt-title">
-                                        <h4 class="fs-7 fw-medium text-uppercase m-0 text-dark dark:text-white text-opacity-50">About</h4>
+                                        <h4 class="fs-7 fw-medium text-uppercase m-0 text-dark dark:text-white text-opacity-50">Links</h4>
                                     </div>
                                     <div class="widgt-content">
                                         <ul class="nav-y gap-2 fs-6 fw-medium text-dark dark:text-white">
-                                            <li><a href="#">About</a></li>
-                                            <li><a href="#">Career</a></li>
-                                            <li><a href="sign-in.html">Log in</a></li>
-                                            <li><a href="sign-up.html">Create an account</a></li>
-                                            <li><a href="#">Sitemap</a></li>
+                                            <li><a href="{{ route('show.website.info','about-us') }}">About Us</a></li>
+                                            <li><a href="{{ route('show.website.info','privacy-policy') }}">Privary Policy</a></li>
+                                            <li><a href="{{ route('show.website.info','term-and-condition') }}">Term And Conditions</a></li>
+                                            <li><a href="{{ route('show.website.info','disclaimer') }}">Disclaimer</a></li>
+                                            {{-- <li><a href="#">Sitemap</a></li> --}}
                                         </ul>
                                     </div>
                                 </div>

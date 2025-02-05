@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\NewslatterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\WebsiteTitleDescriptionController;
+use App\Models\Newslatter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +22,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('emailtemplate', function () {
+
+    $newslatters = Newslatter::all();
+    return view('frontend.mail.newslatter',compact('newslatters'));
+});
 Route::post('subscribe', [IndexController::class, 'subscribe'])->name('subscribe');
-Route::get('about-us', [IndexController::class, 'aboutUs'])->name('about.us');
 Route::get('website/{page}', [IndexController::class, 'websiteInfo'])->name('show.website.info');
 Route::get('contact-us', [IndexController::class, 'contactUs'])->name('contact.us');
 Route::post('contact-us', [IndexController::class, 'contactUsStore'])->name('contact.us.store');
@@ -37,7 +40,9 @@ Route::get('sitemap.xml', [IndexController::class, 'sitemap'])->name('sitemap');
 Route::get('sendmail', [IndexController::class, 'sendmail'])->name('sendmail');
 // Route::get('viewemail', [IndexController::class, 'viewemail'])->name('viewemail');
 
+Route::get('testmail', [NewslatterController::class, 'sendNewslatterToUser'])->name('admin.test.mail');
 
+Route::get('track/click', [NewslatterController::class, 'trackNewslatter'])->name('admin.track.newslatter');
 
 
 
@@ -83,6 +88,19 @@ Route::group(['middleware' => ['adminAuth']], function () {
     Route::get('admin/title-description/edit/{id}', [WebsiteTitleDescriptionController::class, 'titleDescriptionEdit'])->name('admin.title.description.edit');
     Route::put('admin/title-description/update/{id}', [WebsiteTitleDescriptionController::class, 'titleDescriptionUpdate'])->name('admin.title.description.update');
 
+    Route::get('admin/newslatter/create', [NewslatterController::class, 'create'])->name('admin.newslatter.create');
+    Route::post('admin/newslatter/store', [NewslatterController::class, 'store'])->name('admin.newslatter.store');
+    Route::put('admin/newslatter/update/{id}', [NewslatterController::class, 'update'])->name('admin.newslatter.update');
+
+    Route::get('admin/newslattertemplate/create/{id}', [NewslatterController::class, 'templateCreate'])->name('admin.newslatter.template.create');
+    Route::post('admin/newslattertemplate/store', [NewslatterController::class, 'templateStore'])->name('admin.newslatter.template.store');
+    Route::put('admin/newslattertemplate/update/{id}', [NewslatterController::class, 'templateUpdate'])->name('admin.newslatter.template.update');
+
+    Route::post('admin/sendnewslatter/store/{id}', [NewslatterController::class, 'newslatterStore'])->name('admin.send.newslatter.store');
+
+    Route::get('admin/sendnewslattertouser/{id}', [NewslatterController::class, 'sendNewslatterToUser'])->name('admin.send.newslatter.to.user');
+
+    
 
 
     Route::post('admin/post/get_sub_category', [AjaxController::class, 'getSubCategory']);
