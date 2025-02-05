@@ -141,7 +141,7 @@ class NewslatterController extends Controller
         $newslatters = Newslatter::where('template_id', $id)->get();
         
         $email = base64_encode('cehabhishek@gmail.com');
-        dd($newslatters);
+        // dd($newslatters);
         $mailData = [
             'title'         => 'title',
             'description'   => '$meta_description',
