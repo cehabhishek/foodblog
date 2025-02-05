@@ -137,7 +137,7 @@ class NewslatterController extends Controller
     public function sendNewslatterToUser()
     {
         // dd(base64_decode('Y2VoYWJoaXNoZWtAZ21haWwuY29t'));
-        $newslatters = Newslatter::where('template_id', 2)->get();
+        $newslatters = Newslatter::where('template_id', 1)->get();
         // dd($newslatters);
         $email = base64_encode('cehabhishek@gmail.com');
         // dd($newslatters);
