@@ -459,7 +459,8 @@ a {
                                             width="100%">
                                             <tr>
                                                 <td align="center">
-                                                    <a href="asdfsd">
+                                                    <a
+                                                        href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}">
                                                         <img src="{{$newslatter->data_value}}" width="100%" border="0"
                                                             alt=""
                                                             style="width: 100%; height: auto; display: block; margin: 0 auto; border: 0; margin-bottom: 20px;">
