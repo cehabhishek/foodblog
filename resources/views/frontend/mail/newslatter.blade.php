@@ -297,7 +297,7 @@ a {
             <!-- Email Body : BEGIN -->
             <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
                 <tr>
-                    <td align="center" valign="top" style=" background-color: wheat">
+                    <td align="center" valign="top" style=" background-color: #0e3774">
 
                         <!--[if (gte mso 9)|(IE)]>
                   <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="680">
@@ -338,7 +338,8 @@ a {
                                             width="100%">
                                             <tr>
                                                 <td align="center" valign="middle">
-                                                    <h2>asfdasd</h2>
+                                                    <h2 style="color:#fff">Weekly Newsletter</h2>
+                                                    <h3  style="color:#fff">{{\Carbon\Carbon::now()->format('d F Y')}}</h3>
                                                 </td>
                                             </tr>
                                         </table>
@@ -346,12 +347,7 @@ a {
                                 </tr>
                             </table>
                         </div>
-
-                        <!--[if (gte mso 9)|(IE)]>
-                  </td>
-                  </tr>
-                  </table>
-                  <![endif]-->
+                        
                     </td>
                 </tr>
                 <!-- Clear Spacer : BEGIN -->
@@ -397,32 +393,15 @@ a {
                                                 <td
                                                     style="font-family: Arial,sans-serif; font-size:14px; mso-line-height-rule: exactly;line-height: 21px;  color: #000;padding:10px 10px 13px">
                                                     <a
-                                                        href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}">
+                                                        {{-- href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}" --}}
+                                                        >
                                                         <h2
                                                             style="font-family: Arial,sans-serif;font-size:16px; mso-line-height-rule: exactly;line-height: 24px; color: #000;margin:0 0 14px 0">
                                                             {{$newslatter->getPost->title}}</h2>
                                                     </a>
                                                     <p style="margin: 0 0 8px;">
-                                                        Dr. Perry Williams recently joined the faculty in the Department
-                                                        of Natural Resources and Environmental Science at the University
-                                                        of Nevada, Reno, and was kind enough to provide his biography to
-                                                        help us get to know him. Welcome to Nevada, Dr. Williams!
+                                                        {{$newslatter->getPost->meta_description}}
                                                     </p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding:10px">
-                                                    <table align="left" role="presentation" cellspacing="0"
-                                                        cellpadding="0" border="0" style="margin: auto;">
-                                                        <tr>
-                                                            <td align="left"
-                                                                style="font-family: Arial,sans-serif; font-size:14px; mso-line-height-rule: exactly;line-height: 21px;  color: #646464;">
-                                                                <p style="margin:0">
-                                                                    <strong>2021-12-01</strong>&nbsp;Perry Williams
-                                                                </p>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
                                                 </td>
                                             </tr>
                                         </table>
@@ -460,7 +439,8 @@ a {
                                             <tr>
                                                 <td align="center">
                                                     <a
-                                                        href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}">
+                                                        {{-- href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}" --}}
+                                                        >
                                                         <img src="{{$newslatter->data_value}}" width="100%" border="0"
                                                             alt=""
                                                             style="width: 100%; height: auto; display: block; margin: 0 auto; border: 0; margin-bottom: 20px;">

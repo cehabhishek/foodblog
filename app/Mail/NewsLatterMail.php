@@ -39,7 +39,7 @@ class NewsLatterMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'frontend.mail.newslatter',
+            view: 'frontend.mail.newslatter2',
         );
     }
 

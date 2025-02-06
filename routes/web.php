@@ -25,7 +25,7 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('emailtemplate', function () {
 
     $newslatters = Newslatter::all();
-    return view('frontend.mail.newslatter',compact('newslatters'));
+    return view('frontend.mail.newslatter2',compact('newslatters'));
 });
 Route::post('subscribe', [IndexController::class, 'subscribe'])->name('subscribe');
 Route::get('website/{page}', [IndexController::class, 'websiteInfo'])->name('show.website.info');
