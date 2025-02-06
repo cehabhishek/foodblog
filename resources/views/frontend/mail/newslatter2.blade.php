@@ -33,21 +33,22 @@
                                                                                         <tbody>
                                                                                             {{-- logo --}}
                                                                                             <tr>
-                                                                                                <td style="padding-top:12px;padding-bottom:12px;padding-right:0;padding-left:0"
+                                                                                                <td style="padding-top:12px;padding-bottom:12px;padding-right:0;padding-left:0; float: left;"
                                                                                                     valign="top"
-                                                                                                    align="center"><a
-                                                                                                        href=""
-                                                                                                        style="display:block"
-                                                                                                        target="_blank"><span
+                                                                                                    align="center"><a href="" style="display:block" target="_blank"><span
                                                                                                             style="border:0;border-radius:0;vertical-align:top;margin:0"><img
-                                                                                                                width="659.9999999999999"
                                                                                                                 height="auto"
-                                                                                                                style="width:659.9999999999999px;height:auto;max-width:660px!important;border-radius:0;display:block"
+                                                                                                                style="width:250px;height:auto;max-width:660px!important;border-radius:0;display:block"
                                                                                                                 alt=""
                                                                                                                 src="{{asset('frontend/images/logo.jpg')}}"
                                                                                                                 role="presentation"
-                                                                                                                CToWUd"
                                                                                                                 data-bit="iit"></span></a>
+                                                                                                </td>
+                                                                                                <td style="padding-top:12px;padding-bottom:12px;padding-right:0;padding-left:0; float: right; margin-right:100px"
+                                                                                                    valign="top"
+                                                                                                    align="center">
+                                                                                                    <h3>Weekly Newsletter</h3>
+                                                                                                    {{-- <h4>sadf</h4> --}}
                                                                                                 </td>
                                                                                             </tr>
 
@@ -95,7 +96,10 @@
                                                                                                                             <strong>
                                                                                                                                 <span
                                                                                                                                     style="color: rgb(0,67,130); font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-                                                                                                                                    {{$newslatter->getPost->title}}
+                                                                                                                                    <a href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}">
+
+                                                                                                                                        {{$newslatter->getPost->title}}
+                                                                                                                                    </a>
                                                                                                                                 </span>
                                                                                                                             </strong>
                                                                                                                         </p>
@@ -186,7 +190,7 @@
                                                                                                                                                                             {{$newslatter->getPost->meta_description}}
                                                                                                                                                                         </p>
                                                                                                                                                                     </div>
-                                                                                                                                                                    <a href=""
+                                                                                                                                                                    <a href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}"
                                                                                                                                                                         style="background-color: #004382; border-radius: 8px; border: 2px solid #004382; color: #ffffff; display: block; font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif; font-size: 16px; font-weight: normal; padding: 12px 28px; text-decoration: none; min-width: 30px; text-align: center; direction: ltr; letter-spacing: 0px;"
                                                                                                                                                                         rel="noreferrer"
                                                                                                                                                                         target="_blank">
@@ -247,7 +251,7 @@
                                                                                                 <td style="padding-top:12px;padding-bottom:12px;padding-right:0;padding-left:0"
                                                                                                     valign="top"
                                                                                                     align="center"><a
-                                                                                                        href=""
+                                                                                                        href="{{route('admin.track.newslatter',['uid' => $email,'id' => $newslatter->unique_id])}}"
                                                                                                         style="display:block"
                                                                                                         target="_blank"><span
                                                                                                             Border"
